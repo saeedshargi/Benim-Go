@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: benim
+    container_name: benim
+    restart: unless-stoped
+    env_file:
+      - app.env
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stoped
+    env_file:
+      - app.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - dbdata:/data/db
+
+volumes:
+  dbdata:
+    
