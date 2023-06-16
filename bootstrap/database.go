@@ -54,16 +54,3 @@ func CloseDB(client mongo.Client) {
 
 	log.Println("Connection to MongoDB closed.")
 }
-
-func InitDatabase(client mongo.Client, databaseName string) {
-	if client == nil {
-		log.Fatal("Error in connection to database.")
-	}
-
-	err := client.Database(databaseName)
-	if err != nil {
-		log.Fatal("Error on creating document")
-	}
-
-	log.Panicf("Document %s created successfully.", databaseName)
-}

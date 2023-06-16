@@ -18,5 +18,5 @@ func NewBookRoute(env *bootstrap.Env, timeout time.Duration, db mongo.Database, 
 		BookUsecase: usecase.NewBookUsecase(br, timeout),
 	}
 
-	group.POST("/book", bc.Create)
+	group.POST("", bc.Create)
 }

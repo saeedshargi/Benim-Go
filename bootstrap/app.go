@@ -11,7 +11,6 @@ func App() Application {
 	app := &Application{}
 	app.Env = LoadEnv()
 	app.Mongo = ConnectDB(app.Env)
-	InitDatabase(app.Mongo, app.Env.DBName)
 	return *app
 }
 

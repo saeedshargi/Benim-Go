@@ -16,6 +16,16 @@ type BookController struct {
 
 var validate = validator.New()
 
+// CreateBook godoc
+// @Summary Create a new book
+// @Description Create a new book with the input paylod
+// @Tags books
+// @Accept  json
+// @Produce  json
+// @Param book body domain.Book true "Create book"
+// @Success 200 {object} domain.SuccessResponse
+// @Failure 500 {object} domain.ErrorResponse
+// @Router /books [post]
 func (bc *BookController) Create(c echo.Context) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	var book domain.Book
