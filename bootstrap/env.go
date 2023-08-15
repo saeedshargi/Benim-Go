@@ -15,6 +15,9 @@ type Env struct {
 	DBUser         string `mapstructure:"DB_USER"`
 	DBPass         string `mapstructure:"DB_PASS"`
 	DBName         string `mapstructure:"DB_NAME"`
+	RedisAddress   string `mapstructure:"REDIS_ADDRESS"`
+	RedisPort      string `mapstructure:"REDIS_PORT"`
+	JwtSecretkey   string `mapstructure:"JWT_SECRET_KEY"`
 }
 
 func LoadEnv() *Env {

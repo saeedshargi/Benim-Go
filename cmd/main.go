@@ -35,11 +35,14 @@ func main() {
 	db := app.Mongo.Database(env.DBName)
 	defer app.CloseDB()
 
+	cache := app.Redis
+	defer app.CloseRedis()
+
 	timeout := time.Duration(env.ContextTimeout) * time.Second
 
 	echo := echo.New()
 
-	route.Setup(env, timeout, db, echo)
+	route.Setup(env, timeout, db, echo, cache)
 
 	echo.GET("/", HealthCheck)
 	echo.GET("/swagger/*", echoSwagger.WrapHandler)
