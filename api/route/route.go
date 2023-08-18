@@ -1,7 +1,6 @@
 package route
 
 import (
-	"Benim/api/middleware"
 	"Benim/bootstrap"
 	"Benim/mongo"
 	"Benim/redis"
@@ -15,6 +14,6 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, echo *e
 	NewUserRoute(env, timeout, db, publicRoute, cache)
 
 	protectedRoute := echo.Group("/books")
-	protectedRoute.Use(middleware.JwtAuthenticationMiddleware(env.JwtSecretkey))
+	// protectedRoute.Use(middleware.JwtAuthenticationMiddleware(env.JwtSecretkey))
 	NewBookRoute(env, timeout, db, protectedRoute, cache)
 }
