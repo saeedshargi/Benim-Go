@@ -20,4 +20,5 @@ func NewLanguageRoute(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	}
 
 	group.POST("", lc.Create)
+
 }
