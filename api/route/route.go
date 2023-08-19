@@ -16,4 +16,8 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, echo *e
 	protectedRoute := echo.Group("/books")
 	// protectedRoute.Use(middleware.JwtAuthenticationMiddleware(env.JwtSecretkey))
 	NewBookRoute(env, timeout, db, protectedRoute, cache)
+
+	protectedLanguagesRoute := echo.Group("/languages")
+	// protectedRoute.Use(middleware.JwtAuthenticationMiddleware(env.JwtSecretkey))
+	NewLanguageRoute(env, timeout, db, protectedLanguagesRoute, cache)
 }

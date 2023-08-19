@@ -6,8 +6,12 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+const (
+	CollectionLanguage = "languages"
+)
+
 type Language struct {
-	ID             primitive.ObjectID `bson:"_id" json:"id"`
+	ID             primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Name           string             `bson:"name" json:"name" validate:"required"`
 	IsActive       bool               `bson:"isActive" json:"isActive"`
 	IsDeleted      bool               `bson:"isDeleted" json:"-"`
