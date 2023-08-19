@@ -16,7 +16,9 @@ type Env struct {
 	DBPass         string `mapstructure:"DB_PASS"`
 	DBName         string `mapstructure:"DB_NAME"`
 	RedisAddress   string `mapstructure:"REDIS_ADDRESS"`
+	RedisPass      string `mapstructure:"REDIS_PASS"`
 	RedisPort      string `mapstructure:"REDIS_PORT"`
+	RedisDB        string `mapstructure:"REDIS_DB"`
 	JwtSecretkey   string `mapstructure:"JWT_SECRET_KEY"`
 }
 
