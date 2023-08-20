@@ -13,13 +13,13 @@ type LanguageController struct {
 	LanguageUsecase domain.LanguageUsecase
 }
 
-// CreateLanguage godoc
+// GetAllLanguage godoc
 // @Summary Get all languages
 // @Description Get all language with the input paylod
 // @Tags languages
 // @Accept  json
 // @Produce  json
-// @Param language body domain.Language true "Create language"
+// @Param language body domain.Language true "Get All language"
 // @Success 200 {object} domain.SuccessResponse
 // @Failure 500 {object} domain.ErrorResponse
 // @Router /languages [post]
