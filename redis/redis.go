@@ -18,13 +18,13 @@ type redisClient struct {
 	cl *redis.Client
 }
 
-func NewClient(connection string) Client {
+func NewClient(connection string, pass string, _ string) Client {
 
 	time.Local = time.UTC
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     connection,
-		Password: "", // no password set
-		DB:       0,  // use default DB
+		Password: pass, // no password set
+		DB:       0,    // use default DB
 	})
 
 	return &redisClient{cl: rdb}

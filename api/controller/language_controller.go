@@ -9,39 +9,39 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type BookController struct {
-	BookUsecase domain.BookUsecase
+type LanguageController struct {
+	LanguageUsecase domain.LanguageUsecase
 }
 
-// CreateBook godoc
-// @Summary Create a new book
-// @Description Create a new book with the input paylod
-// @Tags books
+// CreateLanguage godoc
+// @Summary Create a new language
+// @Description Create a new language with the input paylod
+// @Tags languages
 // @Accept  json
 // @Produce  json
-// @Param book body domain.Book true "Create book"
+// @Param language body domain.Language true "Create language"
 // @Success 200 {object} domain.SuccessResponse
 // @Failure 500 {object} domain.ErrorResponse
-// @Router /books [post]
-func (bc *BookController) Create(c echo.Context) error {
+// @Router /languages [post]
+func (bc *LanguageController) Create(c echo.Context) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	var book domain.Book
+	var language domain.Language
 	defer cancel()
 
 	//validate the request body
-	if err := c.Bind(&book); err != nil {
+	if err := c.Bind(&language); err != nil {
 		return c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
 	}
 
 	//use the validator library to validate required fields
-	if validationErr := validate.Struct(&book); validationErr != nil {
+	if validationErr := validate.Struct(&language); validationErr != nil {
 		return c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: validationErr.Error()})
 	}
 
-	err := bc.BookUsecase.Create(ctx, &book)
+	err := bc.LanguageUsecase.Create(ctx, &language)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
 	}
 
-	return c.JSON(http.StatusOK, domain.SuccessResponse{Message: "Book created successfully."})
+	return c.JSON(http.StatusOK, domain.SuccessResponse{Message: "Language created successfully."})
 }

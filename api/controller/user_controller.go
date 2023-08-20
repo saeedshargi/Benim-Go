@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 )
 
@@ -13,6 +14,8 @@ type UserController struct {
 	UserUsecase domain.UserUsecase
 	Secret      string
 }
+
+var validate = validator.New()
 
 // Signup godoc
 // @Summary Signup a new user

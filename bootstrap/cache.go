@@ -14,10 +14,11 @@ func ConnectRedis(env *Env) redis.Client {
 
 	redisAddress := env.RedisAddress
 	redisPort := env.RedisPort
+	redisPass := env.RedisPass
 
 	redisUrl := fmt.Sprintf("%s:%s", redisAddress, redisPort)
 
-	client := redis.NewClient(redisUrl)
+	client := redis.NewClient(redisUrl, redisPass, redisPort)
 
 	err := client.Ping(ctx)
 	if err != nil {

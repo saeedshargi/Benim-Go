@@ -11,7 +11,7 @@ const (
 )
 
 type Book struct {
-	ID             primitive.ObjectID `bson:"_id" json:"id"`
+	ID             primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Title          string             `bson:"title" json:"title" validate:"required"`
 	Category       []Category         `bson:"category" json:"category"`
 	Language       []Language         `bson:"language" json:"language"`
