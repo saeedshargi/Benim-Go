@@ -14,6 +14,29 @@ type LanguageController struct {
 }
 
 // CreateLanguage godoc
+// @Summary Get all languages
+// @Description Get all language with the input paylod
+// @Tags languages
+// @Accept  json
+// @Produce  json
+// @Param language body domain.Language true "Create language"
+// @Success 200 {object} domain.SuccessResponse
+// @Failure 500 {object} domain.ErrorResponse
+// @Router /languages [post]
+func (bc *LanguageController) GetAll(c echo.Context) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+
+	defer cancel()
+
+	languages, err := bc.LanguageUsecase.GetAll(ctx)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, domain.SuccessResponse{Message: "Language fetched successfully.", Data: languages})
+}
+
+// CreateLanguage godoc
 // @Summary Create a new language
 // @Description Create a new language with the input paylod
 // @Tags languages

@@ -19,6 +19,7 @@ func NewLanguageRoute(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 		LanguageUsecase: usecase.NewLanguageUsecase(lr, timeout),
 	}
 
+	group.GET("", lc.GetAll)
 	group.POST("", lc.Create)
 
 }
