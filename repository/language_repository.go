@@ -30,8 +30,8 @@ func (b *languageRepository) Create(ctx context.Context, language *domain.Langua
 }
 
 // Delete implements domain.LanguageRepository.
-func (b *languageRepository) Delete(ctx context.Context, id int) error {
-	collection := b.database.Collection(b.collection)
+func (l *languageRepository) Delete(ctx context.Context, id int) error {
+	collection := l.database.Collection(l.collection)
 
 	_, err := collection.DeleteOne(ctx, bson.M{"id": id})
 
@@ -39,8 +39,23 @@ func (b *languageRepository) Delete(ctx context.Context, id int) error {
 }
 
 // GetAll implements domain.LanguageRepository.
-func (*languageRepository) GetAll(ctx context.Context) ([]domain.Language, error) {
-	panic("unimplemented")
+func (l *languageRepository) GetAll(ctx context.Context) ([]domain.Language, error) {
+	collection := l.database.Collection(l.collection)
+
+	var languages []domain.Language
+
+	cursor, err := collection.Find(ctx, bson.M{})
+
+	if err != nil {
+		return nil, err
+	}
+
+	err = cursor.All(ctx, &languages)
+	if err != nil {
+		return nil, err
+	}
+
+	return languages, nil
 }
 
 // GetById implements domain.LanguageRepository.

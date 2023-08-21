@@ -19,8 +19,8 @@ func NewLanguageUsecase(languageRepository domain.LanguageRepository, timeout ti
 }
 
 // Create implements domain.LanguageUsecase.
-func (bu *languageUsecase) Create(c context.Context, language *domain.Language) error {
-	return bu.languageRepository.Create(c, language)
+func (bu *languageUsecase) Create(ctx context.Context, language *domain.Language) error {
+	return bu.languageRepository.Create(ctx, language)
 }
 
 // Delete implements domain.LanguageUsecase.
@@ -29,8 +29,8 @@ func (*languageUsecase) Delete(ctx context.Context, id int) error {
 }
 
 // GetAll implements domain.LanguageUsecase.
-func (*languageUsecase) GetAll(ctx context.Context) ([]domain.Language, error) {
-	panic("unimplemented")
+func (bu *languageUsecase) GetAll(ctx context.Context) ([]domain.Language, error) {
+	return bu.languageRepository.GetAll(ctx)
 }
 
 // GetById implements domain.LanguageUsecase.
