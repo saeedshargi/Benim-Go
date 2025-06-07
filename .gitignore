@@ -136,3 +136,5 @@ appTemp.env
 app.env
 appDev.env
 *.env
+
+assets/docs/*.*
